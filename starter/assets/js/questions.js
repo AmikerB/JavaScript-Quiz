@@ -3,7 +3,13 @@ let questionTitles = [
     "String values must be enclosed within ___ when being assigned to variables.",
     "Q2",
     "Q3",
-    "Q4"
+    "Q4",
+    "Q5",
+    "Q6",
+    "Q7",
+    "Q8",
+    "Q9",
+    "Q10",
 ];
 
 // choices
