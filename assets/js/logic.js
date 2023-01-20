@@ -34,7 +34,7 @@ function setDisplayTime(newTime) {
     time.textContent = newTime;
 }
 
-// function to decrease the time by a set amount. This function should be used later when user chooses wrong answer
+// function to decrease the time by a set amount
 function decreaseTime(value) {
     let currentTime = getDisplayTime();
     let newValue = currentTime - value;
@@ -66,7 +66,7 @@ function wrongAnswerMessageInterval() {
 
     // display the message
     let wrongAnswerMessage = document.createElement("p");
-    wrongAnswerMessage.textContent = "Wrong";
+    wrongAnswerMessage.textContent = "Wrong!";
     wrongAnswerMessage.classList.add("message", "wrong");
     choicesElement.appendChild(wrongAnswerMessage);
 
@@ -113,8 +113,8 @@ function showNextChoices() {
 
     // shows the next choices as buttons
     let choice = choices[questionNumber];
-    // creates choices buttons and displays the choices on the webpage 
 
+    // creates choices buttons and displays the choices on the webpage 
     choice.options.forEach(function (item) {
         let optionButton = document.createElement("button");
         optionButton.textContent = item;
@@ -122,7 +122,7 @@ function showNextChoices() {
         choicesElement.appendChild(optionButton);
     });
 
-    // runs other function to check if correct answer
+    // runs other function to check if correct answer was selected
     isTheAnswerCorrect();
 }
 
@@ -131,18 +131,16 @@ function showNextQuestion() {
     //when called adds 1 to the index which in turn goes to the next question
     questionNumber += 1;
 
+
     //////// WRITE CODE TO RANDOMLY CHOOSE A QUESTION //////////
-    //  let randomQuestion = Math.floor(Math.random() * choices.length);
 
 
-    let questionTitle = questionTitles[questionNumber];
+    let questionTitle = choices[questionNumber].questionTitles;
 
     // displays the question title on the webpage 
     questionTitleElement.textContent = questionTitle;
 
-
     showNextChoices();
-
 }
 
 
