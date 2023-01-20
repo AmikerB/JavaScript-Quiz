@@ -131,7 +131,7 @@ function showNextQuestion() {
     //when called adds 1 to the index which in turn goes to the next question
     questionNumber += 1;
 
-    // randmoly chooses a question
+    //////// WRITE CODE TO RANDOMLY CHOOSE A QUESTION //////////
     //  let randomQuestion = Math.floor(Math.random() * choices.length);
 
 
