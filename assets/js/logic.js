@@ -3,6 +3,9 @@
 let start = document.querySelector("#start");
 let submit = document.querySelector("#submit");
 
+// inputs
+let initialsInput = document.querySelector("#initials");
+
 // screens
 let startScreen = document.querySelector("#start-screen");
 let questionScreen = document.querySelector("#questions");
@@ -15,6 +18,7 @@ let choicesElement = document.querySelector("#choices");
 
 
 ///////// CLOCK LOGIC //////////
+let interval;
 let time = document.querySelector("#time");
 
 // starting clock at 60 (seconds which I have set in a function)
@@ -25,6 +29,34 @@ let questionNumber = -1;
 
 // storage of score
 let score = 0;
+
+// SFX files
+let correctSfx = new Audio("assets/sfx/correct.wav");
+let incorrectSfx = new Audio("assets/sfx/incorrect.wav");
+
+function shuffle(array) {
+    let currentIndex = array.length;
+    let randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        let temp = array[currentIndex];
+
+        array[currentIndex] = array[randomIndex];
+
+        array[randomIndex] = temp;
+
+    }
+
+    return array;
+}
+
+let shuffledQuestions = shuffle(choices);
 
 // function to display the current time on the webpage
 function getDisplayTime() {
@@ -40,7 +72,14 @@ function setDisplayTime(newTime) {
 function decreaseTime(value) {
     let currentTime = getDisplayTime();
     let newValue = currentTime - value;
-    setDisplayTime(newValue);
+
+    if (newValue <= 0) {
+        clearInterval(interval);
+        setDisplayTime("Time is up!");
+        gameOver();
+    } else {
+        setDisplayTime(newValue);
+    }
 }
 
 // function which decreases the current time by 1
@@ -51,24 +90,19 @@ function decreaseTimeByOne() {
 
 ///////// QUESTION LOGIC //////////
 
-// correct answer message
-function correctAnswerMessageInterval() {
 
-    // correct message
-    let correctAnswerMessage = document.createElement("p");
-    correctAnswerMessage.textContent = "Correct!";
-    correctAnswerMessage.classList.add("message", "correct");
-    choicesElement.appendChild(correctAnswerMessage);
+function removeMessages() {
+    let messageElements = document.querySelectorAll(".message");
 
-    // message disappears after 2 seconds
-    setTimeout(function () {
-        correctAnswerMessage.style.display = "none";
-    }, 2000);
+    messageElements.forEach(function (element) {
+        element.remove();
+    });
 }
+
 
 // wrong answer message
 function wrongAnswerMessageInterval() {
-
+    removeMessages();
     // display the message
     let wrongAnswerMessage = document.createElement("p");
     wrongAnswerMessage.textContent = "Wrong!";
@@ -86,6 +120,7 @@ function isTheAnswerCorrect() {
 
     let optionButtons = document.querySelectorAll(".option-button");
 
+
     optionButtons.forEach(function (button) {
 
         button.addEventListener("click", function () {
@@ -94,11 +129,8 @@ function isTheAnswerCorrect() {
 
             if (this.textContent === currentQuestion.correctAnswer) {
 
-                // correct answer sound. DOESNT PLAY
-                let correctSfx = new Audio("../sfx/correct.wav");
                 correctSfx.play();
 
-                correctAnswerMessageInterval();
                 score++;
 
                 // hides the current choices before moving onto the next question 
@@ -109,6 +141,8 @@ function isTheAnswerCorrect() {
                 // move to next question:
                 showNextQuestion();
             } else {
+                incorrectSfx.play();
+
                 wrongAnswerMessageInterval();
                 // take 10 secs off time.
                 decreaseTime(10);
@@ -120,21 +154,22 @@ function isTheAnswerCorrect() {
 
 // call this when you want to display the next question
 function showNextQuestion() {
+
+    removeMessages();
+
     //when called adds 1 to the index which in turn goes to the next question
     questionNumber += 1;
 
-    //////// WRITE CODE TO RANDOMLY CHOOSE A QUESTION //////////
-
-    let questionTitle = choices[questionNumber].questionTitles;
+    let questionTitle = shuffledQuestions[questionNumber].questionTitles;
 
     // displays the question title on the webpage 
     questionTitleElement.textContent = questionTitle;
 
     // shows the next choices as buttons
-    let choice = choices[questionNumber];
+    let choice = shuffledQuestions[questionNumber];
 
     // creates choices buttons and displays the choices on the webpage 
-    choice.options.forEach(function (item) {
+    shuffle(choice.options).forEach(function (item) {
         let optionButton = document.createElement("button");
         optionButton.textContent = item;
         optionButton.classList.add("option-button");
@@ -161,7 +196,7 @@ start.addEventListener("click", function (event) {
 
     setDisplayTime(startTime);
     // decrease time by 1 every second
-    setInterval(decreaseTimeByOne, 1000);
+    interval = setInterval(decreaseTimeByOne, 1000);
     // hide the start screen 
     startScreen.classList.add("hide");
     // removes the class hide from the question screen to display the question screen
@@ -170,22 +205,40 @@ start.addEventListener("click", function (event) {
     showNextQuestion();
 })
 
+submit.addEventListener("click", function (event) {
+    if (initialsInput.value === "") {
+        return;
+    }
+    let scoresString = localStorage.getItem("scores");
+    let scores;
+
+    if (scoresString === null) {
+        scores = [];
+    } else {
+        scores = JSON.parse(scoresString);
+    }
+
+    let scoreObject = {
+        initials: initialsInput.value,
+        score: score
+    };
+
+    scores.push(scoreObject);
+
+    localStorage.setItem("scores", JSON.stringify(scores));
+
+    endScreen.classList.add("hide");
+
+    startScreen.classList.remove("hide");
+
+    initialsInput.value = "";
+
+    score = 0;
+
+});
 
 ///////// TO DO /////////
 
-// QUESTIONS 
-// show questions in random order 
-// BUG: fix correct and wrong display position
-// how to link sound effects
-
-// GAME OVER
-// when all questions answered or
-// when time reaches 0 
-// display end-screen 
-// on end-screen can save initials and score
-
 // LOCAL STORAGE
-// store players initials score in local storage 
-// check local storage at start of game 
 // when on highscores page display local storage scores in order from highest score to lowest score. only show top 5 scores 
 //  
