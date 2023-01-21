@@ -16,9 +16,9 @@ let choices = [
         correctAnswer: "Foreach"
     },
     {
-        questionTitles: "String values must be enclosed within ___ when being assigned to variables.",
-        options: ["D1", "D2", "D3", "D4"],
-        correctAnswer: "D1"
+        questionTitles: "Arrays in JavaScript can be used to store ____.",
+        options: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+        correctAnswer: "all of the above"
     },
     {
         questionTitles: "String values must be enclosed within ___ when being assigned to variables.",

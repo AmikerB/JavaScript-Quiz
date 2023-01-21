@@ -6,10 +6,12 @@ let submit = document.querySelector("#submit");
 // screens
 let startScreen = document.querySelector("#start-screen");
 let questionScreen = document.querySelector("#questions");
+let endScreen = document.querySelector("#end-screen");
 
 // question elements 
 let questionTitleElement = document.querySelector("#question-title");
 let choicesElement = document.querySelector("#choices");
+
 
 
 ///////// CLOCK LOGIC //////////
@@ -46,16 +48,19 @@ function decreaseTimeByOne() {
     decreaseTime(1);
 }
 
+
 ///////// QUESTION LOGIC //////////
 
 // correct answer message
 function correctAnswerMessageInterval() {
+
+    // correct message
     let correctAnswerMessage = document.createElement("p");
     correctAnswerMessage.textContent = "Correct!";
     correctAnswerMessage.classList.add("message", "correct");
     choicesElement.appendChild(correctAnswerMessage);
 
-    // message disappears after 3 seconds
+    // message disappears after 2 seconds
     setTimeout(function () {
         correctAnswerMessage.style.display = "none";
     }, 2000);
@@ -70,10 +75,10 @@ function wrongAnswerMessageInterval() {
     wrongAnswerMessage.classList.add("message", "wrong");
     choicesElement.appendChild(wrongAnswerMessage);
 
-    // message disappears after 3 seconds  
+    // message disappears after 2 seconds  
     setTimeout(function () {
         wrongAnswerMessage.style.display = "none";
-    }, 3000);
+    }, 2000);
 }
 
 // checks if answer selected macthes the correct answer for that question index
@@ -88,6 +93,11 @@ function isTheAnswerCorrect() {
             let currentQuestion = choices[questionNumber];
 
             if (this.textContent === currentQuestion.correctAnswer) {
+
+                // correct answer sound. DOESNT PLAY
+                let correctSfx = new Audio("../sfx/correct.wav");
+                correctSfx.play();
+
                 correctAnswerMessageInterval();
                 score++;
 
@@ -108,8 +118,17 @@ function isTheAnswerCorrect() {
     })
 }
 
-// show the next question
-function showNextChoices() {
+// call this when you want to display the next question
+function showNextQuestion() {
+    //when called adds 1 to the index which in turn goes to the next question
+    questionNumber += 1;
+
+    //////// WRITE CODE TO RANDOMLY CHOOSE A QUESTION //////////
+
+    let questionTitle = choices[questionNumber].questionTitles;
+
+    // displays the question title on the webpage 
+    questionTitleElement.textContent = questionTitle;
 
     // shows the next choices as buttons
     let choice = choices[questionNumber];
@@ -121,27 +140,18 @@ function showNextChoices() {
         optionButton.classList.add("option-button");
         choicesElement.appendChild(optionButton);
     });
-
     // runs other function to check if correct answer was selected
     isTheAnswerCorrect();
 }
 
-// call this when you want to display the next question
-function showNextQuestion() {
-    //when called adds 1 to the index which in turn goes to the next question
-    questionNumber += 1;
 
+// FUNCTION NOT RAN ANYWHERE YET
+function gameOver() {
+    questionScreen.classList.add("hide");
 
-    //////// WRITE CODE TO RANDOMLY CHOOSE A QUESTION //////////
-
-
-    let questionTitle = choices[questionNumber].questionTitles;
-
-    // displays the question title on the webpage 
-    questionTitleElement.textContent = questionTitle;
-
-    showNextChoices();
+    endScreen.classList.remove("hide");
 }
+
 
 
 ///////// START THE GAME LOGIC //////////
@@ -159,3 +169,23 @@ start.addEventListener("click", function (event) {
 
     showNextQuestion();
 })
+
+
+///////// TO DO /////////
+
+// QUESTIONS 
+// show questions in random order 
+// BUG: fix correct and wrong display position
+// how to link sound effects
+
+// GAME OVER
+// when all questions answered or
+// when time reaches 0 
+// display end-screen 
+// on end-screen can save initials and score
+
+// LOCAL STORAGE
+// store players initials score in local storage 
+// check local storage at start of game 
+// when on highscores page display local storage scores in order from highest score to lowest score. only show top 5 scores 
+//  
