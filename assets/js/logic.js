@@ -6,6 +6,9 @@ let submit = document.querySelector("#submit");
 // inputs
 let initialsInput = document.querySelector("#initials");
 
+//final score
+let finalScore = document.querySelector("#final-score");
+
 // screens
 let startScreen = document.querySelector("#start-screen");
 let questionScreen = document.querySelector("#questions");
@@ -15,13 +18,11 @@ let endScreen = document.querySelector("#end-screen");
 let questionTitleElement = document.querySelector("#question-title");
 let choicesElement = document.querySelector("#choices");
 
-
-
 ///////// CLOCK LOGIC //////////
 let interval;
 let time = document.querySelector("#time");
 
-// starting clock at 60 (seconds which I have set in a function)
+// starting clock at 60 (seconds)
 let startTime = 60;
 
 // question number starts at -1, there isn't a -1 in an array therfore, no questions are being displayed... yet
@@ -87,9 +88,7 @@ function decreaseTimeByOne() {
     decreaseTime(1);
 }
 
-
 ///////// QUESTION LOGIC //////////
-
 
 function removeMessages() {
     let messageElements = document.querySelectorAll(".message");
@@ -98,7 +97,6 @@ function removeMessages() {
         element.remove();
     });
 }
-
 
 // wrong answer message
 function wrongAnswerMessageInterval() {
@@ -179,15 +177,14 @@ function showNextQuestion() {
     isTheAnswerCorrect();
 }
 
-
-// FUNCTION NOT RAN ANYWHERE YET
+// NEEDS TO END WHEN ALL QUESTIONS ANSWERED!!!!!!!!!!!!!!!!!!!!!
 function gameOver() {
     questionScreen.classList.add("hide");
 
     endScreen.classList.remove("hide");
+
+    finalScore.textContent = score;
 }
-
-
 
 ///////// START THE GAME LOGIC //////////
 
@@ -219,7 +216,7 @@ submit.addEventListener("click", function (event) {
     }
 
     let scoreObject = {
-        initials: initialsInput.value,
+        initials: initialsInput.value.toUpperCase(),
         score: score
     };
 
@@ -236,9 +233,3 @@ submit.addEventListener("click", function (event) {
     score = 0;
 
 });
-
-///////// TO DO /////////
-
-// LOCAL STORAGE
-// when on highscores page display local storage scores in order from highest score to lowest score. only show top 5 scores 
-//  

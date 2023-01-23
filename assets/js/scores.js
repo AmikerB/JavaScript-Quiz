@@ -1,5 +1,6 @@
 // store in the local storage 
 let highscoresElement = document.querySelector("#highscores");
+let clear = document.querySelector("#clear");
 
 let highscores = [];
 
@@ -30,8 +31,12 @@ function getScores() {
     })
 }
 
-// cleared localStorage.clear 
-// clear list 
+
+// clear high scores button
+clear.addEventListener("click", function () {
+    localStorage.clear();
+    highscoresElement.innerHTML = "";
+})
 
 // check storage for scores
 init();
