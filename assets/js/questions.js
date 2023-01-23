@@ -1,4 +1,4 @@
-//////// WRITE CODE TO RANDOMLY CHOOSE A QUESTION //////////
+//////// QUESTIONS, OPTIONS AND CORRECT ANSWER //////////
 let choices = [
     {
         questionTitles: "String values must be enclosed within ___ when being assigned to variables.",
@@ -44,86 +44,6 @@ let choices = [
         questionTitles: "Which operator is used to assign a value to a variable?",
         options: ["=", "x", "-", "*"],
         correctAnswer: "="
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
-    },
-    {
-        questionTitles: "How can you add a comment in JavaScript?",
-        options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
-        correctAnswer: "// This is a comment"
     },
     {
         questionTitles: "How can you add a comment in JavaScript?",

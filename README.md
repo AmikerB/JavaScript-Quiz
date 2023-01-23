@@ -10,3 +10,7 @@ This [webpage](...) allows the user to test their JavaScript knowledge with a Ja
 ## Credits 
 
 - [w3schools Quiz JavaScript](https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS) for quiz questions
+- [stackoverflow](https://stackoverflow.com/questions/1933969/sound-effects-in-javascript-html5) forum for how to play sfx
+- [Fisher-Yates Shuffle](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array) on stackoverflow
+- [.this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) on mdn web docs
+- 
