@@ -18,4 +18,5 @@ This [webpage](https://amikerb.github.io/JavaScript-Quiz/index.html) allows the 
 - [stackoverflow](https://stackoverflow.com/questions/1933969/sound-effects-in-javascript-html5) forum for how to play sfx
 - [Fisher-Yates Shuffle](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array) on stackoverflow
 - [.this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) on mdn web docs
-- 
+- [.remove()](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove) on mdn web docs
+- [setTimeout()](https://www.w3schools.com/jsref/met_win_settimeout.asp) on w3school
