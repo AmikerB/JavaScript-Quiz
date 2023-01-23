@@ -1,4 +1,5 @@
 ///////// HTML SELECTING ////////// 
+
 // buttons
 let start = document.querySelector("#start");
 let submit = document.querySelector("#submit");
@@ -19,22 +20,19 @@ let questionTitleElement = document.querySelector("#question-title");
 let choicesElement = document.querySelector("#choices");
 
 ///////// CLOCK LOGIC //////////
+
 let interval;
 let time = document.querySelector("#time");
-
-// starting clock at 60 (seconds)
 let startTime = 60;
-
-// question number starts at -1, there isn't a -1 in an array therfore, no questions are being displayed... yet
+// question number starts at -1, there isn't a -1 in an array therfore, no questions are being displayed yet
 let questionNumber = -1;
-
-// storage of score
 let score = 0;
 
 // SFX files
 let correctSfx = new Audio("assets/sfx/correct.wav");
 let incorrectSfx = new Audio("assets/sfx/incorrect.wav");
 
+// function to shuffle
 function shuffle(array) {
     let currentIndex = array.length;
     let randomIndex;
@@ -57,6 +55,7 @@ function shuffle(array) {
     return array;
 }
 
+// shuffles questions and stores in an array
 let shuffledQuestions = shuffle(choices);
 
 // function to display the current time on the webpage
@@ -73,12 +72,13 @@ function setDisplayTime(newTime) {
 function decreaseTime(value) {
     let currentTime = getDisplayTime();
     let newValue = currentTime - value;
-
+    // once timer reaches 0 game is over
     if (newValue <= 0) {
         clearInterval(interval);
         setDisplayTime("Time is up!");
         gameOver();
     } else {
+        // timer displays new time 
         setDisplayTime(newValue);
     }
 }
@@ -115,32 +115,22 @@ function wrongAnswerMessageInterval() {
 
 // checks if answer selected macthes the correct answer for that question index
 function isTheAnswerCorrect() {
-
     let optionButtons = document.querySelectorAll(".option-button");
-
-
+    // converts each option into a button
     optionButtons.forEach(function (button) {
-
         button.addEventListener("click", function () {
-
             let currentQuestion = choices[questionNumber];
-
+            // checks if answer selected is the correct answer
             if (this.textContent === currentQuestion.correctAnswer) {
-
                 correctSfx.play();
-
                 score++;
-
                 // hides the current choices before moving onto the next question 
                 optionButtons.forEach(function (choices) {
                     choices.style.display = "none";
                 });
-
-                // move to next question:
                 showNextQuestion();
             } else {
                 incorrectSfx.play();
-
                 wrongAnswerMessageInterval();
                 // take 10 secs off time.
                 decreaseTime(10);
@@ -152,20 +142,15 @@ function isTheAnswerCorrect() {
 
 // call this when you want to display the next question
 function showNextQuestion() {
-
+    // removes messages before next question is displayed
     removeMessages();
-
     //when called adds 1 to the index which in turn goes to the next question
     questionNumber += 1;
-
+    // shuffles questions then displays a question title on the webpage
     let questionTitle = shuffledQuestions[questionNumber].questionTitles;
-
-    // displays the question title on the webpage 
     questionTitleElement.textContent = questionTitle;
-
-    // shows the next choices as buttons
+    // displays corresponding options 
     let choice = shuffledQuestions[questionNumber];
-
     // creates choices buttons and displays the choices on the webpage 
     shuffle(choice.options).forEach(function (item) {
         let optionButton = document.createElement("button");
@@ -173,16 +158,15 @@ function showNextQuestion() {
         optionButton.classList.add("option-button");
         choicesElement.appendChild(optionButton);
     });
-    // runs other function to check if correct answer was selected
+    // runs function to check if correct answer was selected
     isTheAnswerCorrect();
 }
 
-// NEEDS TO END WHEN ALL QUESTIONS ANSWERED!!!!!!!!!!!!!!!!!!!!!
+///////// END GAME LOGIC //////////
+
 function gameOver() {
     questionScreen.classList.add("hide");
-
     endScreen.classList.remove("hide");
-
     finalScore.textContent = score;
 }
 
@@ -190,7 +174,6 @@ function gameOver() {
 
 start.addEventListener("click", function (event) {
     event.preventDefault();
-
     setDisplayTime(startTime);
     // decrease time by 1 every second
     interval = setInterval(decreaseTimeByOne, 1000);
@@ -198,20 +181,23 @@ start.addEventListener("click", function (event) {
     startScreen.classList.add("hide");
     // removes the class hide from the question screen to display the question screen
     questionScreen.classList.remove("hide");
-
     showNextQuestion();
 })
 
 submit.addEventListener("click", function (event) {
+    // if no initials entered score is not saved
     if (initialsInput.value === "") {
         return;
     }
+
     let scoresString = localStorage.getItem("scores");
     let scores;
 
+    // if no data in local storage a new string of scores is created
     if (scoresString === null) {
         scores = [];
     } else {
+        // converts in local storage into an array with objects
         scores = JSON.parse(scoresString);
     }
 
@@ -221,15 +207,12 @@ submit.addEventListener("click", function (event) {
     };
 
     scores.push(scoreObject);
-
+    // converts score inot string to be stored in local storage
     localStorage.setItem("scores", JSON.stringify(scores));
-
     endScreen.classList.add("hide");
-
     startScreen.classList.remove("hide");
-
+    // sets initial input box back to empty for next player
     initialsInput.value = "";
-
+    // sets score back to 0 for next player
     score = 0;
-
 });
