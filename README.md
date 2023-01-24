@@ -20,3 +20,4 @@ This [webpage](https://amikerb.github.io/JavaScript-Quiz/index.html) allows the 
 - [.this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) on mdn web docs
 - [.remove()](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove) on mdn web docs
 - [setTimeout()](https://www.w3schools.com/jsref/met_win_settimeout.asp) on w3school
+- [JavaScript Quiz ending before all questions asked](https://stackoverflow.com/questions/70730474/javascript-quiz-ending-before-all-questions-asked) on stackoverflow
