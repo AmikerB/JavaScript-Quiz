@@ -37,8 +37,8 @@ let choices = [
     },
     {
         questionTitles: "How do you write an IF statement in JavaScript?",
-        options: ["if i === 5 then", "if i = 5", "if i = 5 then", "if (i === 5)"],
-        correctAnswer: "if (i === 5)"
+        options: ["if i === 5 then", "if i = 5 ()", "if (i = 5) then", "if (i === 5) {}"],
+        correctAnswer: "if (i === 5) {}"
     },
     {
         questionTitles: "Which operator is used to assign a value to a variable?",

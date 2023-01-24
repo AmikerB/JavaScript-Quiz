@@ -32,18 +32,19 @@ let score = 0;
 let correctSfx = new Audio("assets/sfx/correct.wav");
 let incorrectSfx = new Audio("assets/sfx/incorrect.wav");
 
-// function to shuffle
+// Fisher-Yates shuffle function to shuffle
 function shuffle(array) {
     let currentIndex = array.length;
     let randomIndex;
 
-    // While there remain elements to shuffle.
+    // While there remains elements to shuffle.
     while (currentIndex != 0) {
 
         // Pick a remaining element.
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
 
+        // swaps arrays index's to shuffle 
         let temp = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temp;
@@ -54,7 +55,7 @@ function shuffle(array) {
 
 // shuffles questions and stores in an array
 let shuffledQuestions = shuffle(choices);
-// -1 to get the arrays index number
+// -1 to match arrays index number
 let choicesLength = choices.length - 1;
 
 // function to display the current time on the webpage
