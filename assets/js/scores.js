@@ -1,11 +1,11 @@
-// store in the local storage 
+///////// HTML SELECTING ////////// 
+
 let highscoresElement = document.querySelector("#highscores");
 let clear = document.querySelector("#clear");
 
 let highscores = [];
 
-
-///////// look into local storage //////////
+///////// LOCAL STORAGE //////////
 
 // check local storage at start of game
 function getScores() {
