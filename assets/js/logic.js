@@ -45,13 +45,10 @@ function shuffle(array) {
         currentIndex--;
 
         let temp = array[currentIndex];
-
         array[currentIndex] = array[randomIndex];
-
         array[randomIndex] = temp;
 
     }
-
     return array;
 }
 
@@ -144,6 +141,16 @@ function isTheAnswerCorrect() {
 function showNextQuestion() {
     // removes messages before next question is displayed
     removeMessages();
+
+
+    // end game once last question answered 
+    shuffledQuestions.forEach(function (choices, index) {
+        if (index > choices.length) {
+            gameOver();
+        }
+    })
+
+
     //when called adds 1 to the index which in turn goes to the next question
     questionNumber += 1;
     // shuffles questions then displays a question title on the webpage
