@@ -54,6 +54,8 @@ function shuffle(array) {
 
 // shuffles questions and stores in an array
 let shuffledQuestions = shuffle(choices);
+// -1 to get the arrays index number
+let choicesLength = choices.length - 1;
 
 // function to display the current time on the webpage
 function getDisplayTime() {
@@ -139,34 +141,32 @@ function isTheAnswerCorrect() {
 
 // call this when you want to display the next question
 function showNextQuestion() {
-    // removes messages before next question is displayed
-    removeMessages();
+    // end game once all questions have been answered 
+    if (questionNumber < choicesLength) {
+        // removes messages before next question is displayed
+        removeMessages();
 
+        //when called adds 1 to the index which in turn goes to the next question
+        questionNumber += 1;
+        // shuffles questions then displays a question title on the webpage
+        let questionTitle = shuffledQuestions[questionNumber].questionTitles;
+        questionTitleElement.textContent = questionTitle;
+        // displays corresponding options 
+        let choice = shuffledQuestions[questionNumber];
+        // creates choices buttons and displays the choices on the webpage 
+        console.log(questionNumber);
 
-    // end game once last question answered 
-    shuffledQuestions.forEach(function (choices, index) {
-        if (index > choices.length) {
-            gameOver();
-        }
-    })
-
-
-    //when called adds 1 to the index which in turn goes to the next question
-    questionNumber += 1;
-    // shuffles questions then displays a question title on the webpage
-    let questionTitle = shuffledQuestions[questionNumber].questionTitles;
-    questionTitleElement.textContent = questionTitle;
-    // displays corresponding options 
-    let choice = shuffledQuestions[questionNumber];
-    // creates choices buttons and displays the choices on the webpage 
-    shuffle(choice.options).forEach(function (item) {
-        let optionButton = document.createElement("button");
-        optionButton.textContent = item;
-        optionButton.classList.add("option-button");
-        choicesElement.appendChild(optionButton);
-    });
-    // runs function to check if correct answer was selected
-    isTheAnswerCorrect();
+        shuffle(choice.options).forEach(function (item) {
+            let optionButton = document.createElement("button");
+            optionButton.textContent = item;
+            optionButton.classList.add("option-button");
+            choicesElement.appendChild(optionButton);
+        });
+        // runs function to check if correct answer was selected
+        isTheAnswerCorrect();
+    } else {
+        gameOver();
+    }
 }
 
 ///////// END GAME LOGIC //////////
