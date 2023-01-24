@@ -12,6 +12,10 @@ This [webpage](https://amikerb.github.io/JavaScript-Quiz/index.html) allows the 
 #### screenshot of end page:
 ![alt text](./assets/images/js-quiz-end-screen.png)
 
+#### screenshot of highscore page:
+
+![alt text](./assets/images/js-quiz-highscore.png)
+
 ## Credits 
 
 - [w3schools Quiz JavaScript](https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS) for quiz questions
