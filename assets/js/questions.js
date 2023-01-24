@@ -50,5 +50,4 @@ let choices = [
         options: ["<!-- This is a comment -->", "// This is a comment", "' This is a comment", "- This is a comment"],
         correctAnswer: "// This is a comment"
     },
-
 ]
